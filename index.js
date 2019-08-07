@@ -9,6 +9,8 @@ var inquirer = require('inquirer');
 function startGame() {
     console.log("Game has started");
     // Pick  random word
+    selectedAnimal = animals[Math.floor(Math.random() * animals.length)];
+    console.log(selectedAnimal);
     // Make a constructor with it?
     // Ask for letter
     // if letter is correct
