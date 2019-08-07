@@ -9,21 +9,8 @@
 // A function that takes a character as an argument and checks it against the underlying character, updating the stored boolean value to true if it was guessed correctly
 
 function Letter(input) {
-    this.letter = input;
-    this.boolean = false;
 
-    if (this.boolean === false) {
-        return "_";
-    }
-    else {
-        return this.letter;
-    }
 
-    this.trueOrFalse = function (theLetter) {
-        if (theLetter === this.letter) {
-            this.boolean = true;
-        }
-    }
 }
 
 module.exports = Letter;

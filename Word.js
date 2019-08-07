@@ -6,3 +6,8 @@
 
 // A function that takes a character as an argument and calls the guess function on each letter object(the second function defined in Letter.js)
 
+var Letter = require("./Letter.js");
+
+function Word(chosenWord) {
+
+}
