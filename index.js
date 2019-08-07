@@ -8,10 +8,11 @@ var guessedLetters = [];
 
 
 function startGame() {
-    console.log("Game has started");
-    // Pick  random word
-    selectedAnimal = animals[Math.floor(Math.random() * animals.length)];
-    console.log(selectedAnimal);
+    // console.log("Game has started");
+    // // Pick  random word
+    // selectedAnimal = animals[Math.floor(Math.random() * animals.length)];
+    // console.log(selectedAnimal);
+    var theWord = "santiago";
     // Use Word constructor to store it
 
     // Ask for letter
