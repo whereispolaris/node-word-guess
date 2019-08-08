@@ -2,19 +2,19 @@
 
 var Letter = require("./Letter.js");
 
-testWord = "santiago";
-
-
 function Word(chosenWord) {
     // An array of new Letter objects representing the letters of the underlying word
-    newArray = chosenWord.split("");
+    this.newArray = chosenWord.split("");
+
+    this.arrLetters = [];
 
     // A function that returns a string representing the word.This should call the function on each letter object(the first function defined in Letter.js) that displays the character or an underscore and concatenate those together.
-    this.displayWord = function (arr) {
-        var constructWord = " ";
-        arr.array.forEach(element => {
-            var newLetter = new Letter(element);
-            constructWord.push(newLetter)
+    this.displayWord = function () {
+
+        this.newArray.forEach(function (element, index) {
+            console.log(index);
+            // this.arrLetters.push(new Letter(element));
+            console.log(element);
         });
         console.log(constructWord);
     }
@@ -24,3 +24,10 @@ function Word(chosenWord) {
         Letter.correctLetterCheck(letter);
     }
 }
+
+var newWord = new Word("santiago");
+console.log(newWord);
+console.log(newWord.displayWord());
+// console.log(newWord.arrLetters);
+
+module.exports = Word;
