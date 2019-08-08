@@ -1,5 +1,6 @@
 // Contains a constructor, Letter.This constructor should be able to either display an underlying character or a blank placeholder(such as an underscore), depending on whether or not the user has guessed the letter.That means the constructor should define:
 
+var testLetter = new Letter("s");
 
 function Letter(wordInput) {
     // A string value to store the underlying character for the letter 
@@ -23,8 +24,11 @@ function Letter(wordInput) {
         if (userInput === this.letter) {
             this.guessedYet = true;
         }
+        else {
+            // Incorrect Guess
+            console.log("Incorrect guess")
+        }
     }
-
 }
 
 module.exports = Letter;
