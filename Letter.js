@@ -10,12 +10,8 @@ function Letter(letter) {
     this.correctLetterCheck = function (userInput) {
         if (userInput === this.letter) {
             this.guessedYet = true;
-            this.guessedLetterCheck();
         }
-        else {
-            // Incorrect Guess
-            console.log("Incorrect guess");
-        }
+        this.guessedLetterCheck();
     }
 
     // A function that returns the underlying character if the letter has been guessed, or a placeholder(like an underscore) if the letter has not been guessed
@@ -24,15 +20,11 @@ function Letter(letter) {
             return "_";
         }
         else {
+            this.guessedYet = true;
             return this.letter;
         }
         // Need to write condition for spaces (" "). 
     }
 }
-
-
-var testLetter = new Letter("s");
-
-console.log(testLetter.guessedLetterCheck());
 
 module.exports = Letter;

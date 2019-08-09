@@ -6,7 +6,10 @@ var animals = require('./wordBank.js');
 var inquirer = require('inquirer');
 var guessedLetters = [];
 
+var testAnimal = new Word("santiago");
 
+testAnimal.firstLoad();
+testAnimal.displayWord();
 
 function startGame() {
     // console.log("Game has started");
@@ -14,24 +17,29 @@ function startGame() {
     selectedAnimal = animals[Math.floor(Math.random() * animals.length)];
 
     // Use Word constructor to store it
-    Word(selectedAnimal);
+    // Word(selectedAnimal);
+    askLetter();
+}
 
-    // Ask for letter
-    // inquirer
-    //     .prompt([
-    //         /* Pass your questions in here */
-    //         {
-    //             type: "input",
-    //             message: "Please Guess a letter:",
-    //             name: "guessedLetter"
-    //         }
-    //     ])
-    //     .then(answers => {
-    //         // Use user feedback for... whatever!!
-    //         console.log("the guessed letter is:" + answers.guessedLetter);
-    //         Word.callGuessfun(answers.guessedLetter);
-    //     });
-
+// Ask for letter
+function askLetter() {
+    inquirer
+        .prompt([
+            /* Pass your questions in here */
+            {
+                type: "input",
+                message: "Please Guess a letter:",
+                name: "guessedLetter"
+            }
+        ])
+        .then(answers => {
+            // Use user feedback for... whatever!!
+            console.log("the guessed letter is:" + answers.guessedLetter);
+            // testAnimal.displayWord();
+            testAnimal.callGuessfun(answers.guessedLetter);
+            testAnimal.displayWord();
+            askLetter();
+        });
 }
 
 startGame();
