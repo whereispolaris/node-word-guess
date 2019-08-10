@@ -12,7 +12,7 @@ testAnimal.firstLoad();
 testAnimal.displayWord();
 
 function startGame() {
-    guessesLeft = 10;
+    guessesLeft = 5;
     // console.log("Game has started");
     // // Pick  random word
     selectedAnimal = animals[Math.floor(Math.random() * animals.length)];
@@ -24,27 +24,32 @@ function startGame() {
 
 // Ask for letter
 function askLetter() {
-    inquirer
-        .prompt([
-            /* Pass your questions in here */
-            {
-                type: "input",
-                message: "Please Guess a letter:",
-                name: "guessedLetter"
-            }
-        ])
-        .then(answers => {
-            // Use user feedback for... whatever!!
-            console.log("the guessed letter is: " + answers.guessedLetter);
-            testAnimal.callGuessfun(answers.guessedLetter);
-            testAnimal.displayWord();
-            guessedLetters.push(answers.guessedLetter);
-            console.log("You have " + guessesLeft + " guesses left!");
-            guessesLeft--;
-            console.log("Guessed Letters:" + guessedLetters);
+    if (guessesLeft === 0) {
+        console.log("You have lost the game!");
+    }
+    else {
+        inquirer
+            .prompt([
+                /* Pass your questions in here */
+                {
+                    type: "input",
+                    message: "Please Guess a letter:",
+                    name: "guessedLetter"
+                }
+            ])
+            .then(answers => {
+                // Use user feedback for... whatever!!
+                console.log("the guessed letter is: " + answers.guessedLetter);
+                testAnimal.callGuessfun(answers.guessedLetter);
+                testAnimal.displayWord();
+                guessedLetters.push(answers.guessedLetter);
+                console.log("You have " + guessesLeft + " guesses left!");
+                guessesLeft--;
+                console.log("Guessed Letters:" + guessedLetters);
 
-            askLetter();
-        });
+                askLetter();
+            });
+    }
 }
 
 startGame();
