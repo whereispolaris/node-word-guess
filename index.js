@@ -43,8 +43,8 @@ function askLetter() {
                 newAnimal.callGuessfun(answers.guessedLetter);
                 newAnimal.displayWord();
                 guessedLetters.push(answers.guessedLetter);
-                console.log("You have " + guessesLeft + " guesses left!");
                 guessesLeft--;
+                console.log("You have " + guessesLeft + " guesses left!");
                 console.log("Guessed Letters:" + guessedLetters);
 
                 askLetter();
@@ -53,3 +53,6 @@ function askLetter() {
 }
 
 startGame();
+
+// TO DO
+// - if the letter is correct
