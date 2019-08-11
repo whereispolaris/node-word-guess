@@ -18,27 +18,33 @@ function startGame() {
     askLetter();
 }
 
+function wantToContinue() {
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "What would you like to do?",
+            choices: ["PLAY AGAIN", "EXIT"],
+            name: "whatToDo"
+        }
+    ]).then(function (answers) {
+        switch (answers.whatToDo) {
+            case "PLAY AGAIN":
+                startGame()
+                break;
+            case "EXIT":
+                console.log("Thanks for playing!!")
+                break;
+        }
+    });
+}
+
 // Ask for letter
 function askLetter() {
+
+    // This checks if user has ran out of guesses and prompts them if they want to play again. 
     if (guessesLeft === 0) {
         console.log("You have lost the game!");
-        inquirer.prompt([
-            {
-                type: "list",
-                message: "What would you like to do?",
-                choices: ["PLAY AGAIN", "EXIT"],
-                name: "whatToDo"
-            }
-        ]).then(function (answers) {
-            switch (answers.whatToDo) {
-                case "PLAY AGAIN":
-                    startGame()
-                    break;
-                case "EXIT":
-                    console.log("Thanks for playing!!")
-                    break;
-            }
-        });
+        wantToContinue();
     }
     else {
         inquirer
@@ -65,9 +71,22 @@ function askLetter() {
                 }
                 console.log("You have " + guessesLeft + " guesses left!");
                 console.log("Guessed Letters:" + guessedLetters);
-                askLetter();
+
+                if (newAnimal.arrDisplay.includes("_")) {
+                    console.log("The show must go on");
+                    askLetter();
+                }
+                else {
+                    console.log("You have won the game");
+                    wantToContinue();
+                }
+
+
             });
     }
 }
 
 startGame();
+
+// TO DO
+// - Check if any letters contain _ and tell user they've won the game
