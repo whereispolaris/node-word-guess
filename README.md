@@ -12,7 +12,7 @@ Full Video Demo: https://share.getcloudapp.com/X6uYN2zp
 
 ## Installation
 
-- Clone repo
+- Clone repo:
 
 ```
 $ git clone https://github.com/whereispolaris/node-word-guess.git
