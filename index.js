@@ -3,7 +3,6 @@ var animals = require('./wordBank.js');
 var inquirer = require('inquirer');
 var chalk = require('chalk');
 var guessedLetters = [];
-// var guessedInput = false;
 var guessesLeft;
 var newAnimal;
 
