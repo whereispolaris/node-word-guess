@@ -5,12 +5,13 @@ var Word = require("./Word.js");
 var animals = require('./wordBank.js');
 var inquirer = require('inquirer');
 var guessedLetters = [];
+var guessedInput = false;
 var guessesLeft;
 var newAnimal;
 
-
 function startGame() {
     guessesLeft = 5;
+    guessedLetters = [];
     console.log("Game has started");
     // // Pick  random word
     selectedAnimal = animals[Math.floor(Math.random() * animals.length)];
@@ -18,7 +19,6 @@ function startGame() {
     newAnimal = new Word(selectedAnimal);
     newAnimal.firstLoad();
     newAnimal.displayWord();
-
     askLetter();
 }
 
@@ -26,6 +26,23 @@ function startGame() {
 function askLetter() {
     if (guessesLeft === 0) {
         console.log("You have lost the game!");
+        inquirer.prompt([
+            {
+                type: "list",
+                message: "What would you like to do?",
+                choices: ["PLAY AGAIN", "EXIT"],
+                name: "whatToDo"
+            }
+        ]).then(function (answers) {
+            switch (answers.whatToDo) {
+                case "PLAY AGAIN":
+                    startGame()
+                    break;
+                case "EXIT":
+                    console.log("Thanks for playing!!")
+                    break;
+            }
+        });
     }
     else {
         inquirer
@@ -46,7 +63,6 @@ function askLetter() {
                 guessesLeft--;
                 console.log("You have " + guessesLeft + " guesses left!");
                 console.log("Guessed Letters:" + guessedLetters);
-
                 askLetter();
             });
     }
@@ -55,4 +71,5 @@ function askLetter() {
 startGame();
 
 // TO DO
-// - if the letter is correct
+// Ask user if they want to play again. 
+// - if the letter is correct, don't substract from guessesLeft
