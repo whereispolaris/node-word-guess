@@ -1,17 +1,20 @@
 var Word = require("./Word.js");
 var animals = require('./wordBank.js');
 var inquirer = require('inquirer');
+var chalk = require('chalk');
 var guessedLetters = [];
-var guessedInput = false;
+// var guessedInput = false;
 var guessesLeft;
 var newAnimal;
 
 function startGame() {
     guessesLeft = 5;
     guessedLetters = [];
-    console.log("Game has started");
+
+    console.log(chalk.magenta("------------------"));
+    console.log(chalk.magenta(" GUESS THE ANIMAL"));
+    console.log(chalk.magenta("------------------ \n"));
     selectedAnimal = animals[Math.floor(Math.random() * animals.length)];
-    console.log(selectedAnimal);
     newAnimal = new Word(selectedAnimal);
     newAnimal.firstLoad();
     newAnimal.displayWord();
@@ -32,7 +35,7 @@ function wantToContinue() {
                 startGame()
                 break;
             case "EXIT":
-                console.log("Thanks for playing!!")
+                console.log(chalk.magenta("Thanks for playing!"));
                 break;
         }
     });
@@ -43,13 +46,12 @@ function askLetter() {
 
     // This checks if user has ran out of guesses and prompts them if they want to play again. 
     if (guessesLeft === 0) {
-        console.log("You have lost the game!");
+        console.log(chalk.red("BOO! YOU LOST! \n"));
         wantToContinue();
     }
     else {
         inquirer
             .prompt([
-                /* Pass your questions in here */
                 {
                     type: "input",
                     message: "Please Guess a letter:",
@@ -57,36 +59,29 @@ function askLetter() {
                 }
             ])
             .then(answers => {
-                // Use user feedback for... whatever!!
                 console.log("the guessed letter is: " + answers.guessedLetter);
                 newAnimal.callGuessfun(answers.guessedLetter);
                 newAnimal.displayWord();
                 guessedLetters.push(answers.guessedLetter);
                 if (newAnimal.arrDisplay.includes(answers.guessedLetter)) {
-                    console.log("CORRECT!")
+                    console.log(chalk.green("CORRECT!\n"))
                 }
                 else {
-                    console.log("INCORRECT!");
+                    console.log(chalk.red("INCORRECT!\n"));
                     guessesLeft--;
                 }
-                console.log("You have " + guessesLeft + " guesses left!");
-                console.log("Guessed Letters:" + guessedLetters);
+                console.log(chalk.yellow("You have ") + chalk.red(guessesLeft) + chalk.yellow(" guesses left! \n"));
+                // console.log("Guessed Letters:" + guessedLetters);
 
                 if (newAnimal.arrDisplay.includes("_")) {
-                    console.log("The show must go on");
                     askLetter();
                 }
                 else {
-                    console.log("You have won the game");
+                    console.log(chalk.green("YAY! YOU WON THE GAME!\n"));
                     wantToContinue();
                 }
-
-
             });
     }
 }
 
 startGame();
-
-// TO DO
-// - Check if any letters contain _ and tell user they've won the game
