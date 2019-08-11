@@ -59,19 +59,19 @@ function askLetter() {
                 }
             ])
             .then(answers => {
-                console.log("the guessed letter is: " + answers.guessedLetter);
                 newAnimal.callGuessfun(answers.guessedLetter);
                 newAnimal.displayWord();
-                guessedLetters.push(answers.guessedLetter);
                 if (newAnimal.arrDisplay.includes(answers.guessedLetter)) {
-                    console.log(chalk.green("CORRECT!\n"))
+                    console.log(chalk.green("\nCORRECT!\n"))
                 }
                 else {
-                    console.log(chalk.red("INCORRECT!\n"));
+                    console.log(chalk.red("\nINCORRECT!\n"));
+                    guessedLetters.push(answers.guessedLetter);
+                    console.log("Incorrect guessed Letters: " + chalk.red(guessedLetters) + "\n");
                     guessesLeft--;
                 }
                 console.log(chalk.yellow("You have ") + chalk.red(guessesLeft) + chalk.yellow(" guesses left! \n"));
-                // console.log("Guessed Letters:" + guessedLetters);
+
 
                 if (newAnimal.arrDisplay.includes("_")) {
                     askLetter();
