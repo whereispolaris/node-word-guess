@@ -8,7 +8,6 @@ function Word(chosenWord) {
     this.firstLoad = function () {
         for (i = 0; i < this.newArray.length; i++) {
             this.arrLetters.push(new Letter(this.newArray[i]));
-            // console.log(this.arrLetters[i].guessedLetterCheck());
         }
     }
 

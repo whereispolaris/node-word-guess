@@ -10,7 +10,6 @@ function startGame() {
     guessesLeft = 5;
     guessedLetters = [];
     console.log("Game has started");
-    // // Pick  random word
     selectedAnimal = animals[Math.floor(Math.random() * animals.length)];
     console.log(selectedAnimal);
     newAnimal = new Word(selectedAnimal);
@@ -57,7 +56,13 @@ function askLetter() {
                 newAnimal.callGuessfun(answers.guessedLetter);
                 newAnimal.displayWord();
                 guessedLetters.push(answers.guessedLetter);
-                guessesLeft--;
+                if (newAnimal.arrDisplay.includes(answers.guessedLetter)) {
+                    console.log("CORRECT!")
+                }
+                else {
+                    console.log("INCORRECT!");
+                    guessesLeft--;
+                }
                 console.log("You have " + guessesLeft + " guesses left!");
                 console.log("Guessed Letters:" + guessedLetters);
                 askLetter();
