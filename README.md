@@ -8,7 +8,7 @@ Technologies Used:
 
 ![Word Guess Demo](https://santiagoenciso.com/img/wordGuessDemo.gif "Word Guess Demo")
 
-Full Video Demo: https://share.getcloudapp.com/X6uYN2zp
+Full Video Demo: https://santiagoenciso.com/videos/node-word-guess.mov
 
 ## Installation
 
